@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+    // Функция для добавления заметки в DOM
     function addNoteToDOM(text, isNew = true) {
         const noteEl = document.createElement('div');
         noteEl.classList.add('note');
@@ -44,18 +45,21 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Функция для сохранения заметки в localStorage
     function saveNote(text) {
         let notes = JSON.parse(localStorage.getItem('notes')) || [];
         notes.push(text);
         localStorage.setItem('notes', JSON.stringify(notes));
     }
 
+    // Функция для удаления заметки
     function deleteNote(text) {
         let notes = JSON.parse(localStorage.getItem('notes')) || [];
         notes = notes.filter(note => note !== text);
         localStorage.setItem('notes', JSON.stringify(notes));
     }
 
+    // Функция для обновления заметки
     function updateNote(oldText, newText) {
         let notes = JSON.parse(localStorage.getItem('notes')) || [];
         const index = notes.indexOf(oldText);
@@ -65,6 +69,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    // Функция для загрузки заметок из localStorage
     function loadNotes() {
         let notes = JSON.parse(localStorage.getItem('notes')) || [];
         notes.forEach(note => addNoteToDOM(note, false));
